@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <el-button>这是elementui的测试按钮</el-button>
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="欢迎您，Vue.js App！"/>
   </div>
