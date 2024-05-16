@@ -17,10 +17,9 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
   {
-    path: '/home', // 设置登录页面的路由路径为 "/login"
+    path: '/home',
     name: 'home',
-    component: HomeView // 将登录页面组件指定为组件
-  }
+    component: HomeView
 ]
 
 const router = createRouter({
