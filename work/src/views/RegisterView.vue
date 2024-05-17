@@ -38,7 +38,7 @@
                 show-password
                 placeholder="请确认密码">
               <template #prefix>
-                <el-icon><Lock /></el-icon>
+                <el-icon><Check /></el-icon>
               </template>
             </el-input>
           </el-form-item>
@@ -54,7 +54,7 @@
 
 
 <script>
-import { User, Lock } from '@element-plus/icons-vue'
+import { User, Lock , Check } from '@element-plus/icons-vue'
 import axios from 'axios'
 
 export default {
