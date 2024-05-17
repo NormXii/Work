@@ -8,15 +8,19 @@
         </div>
         
         <el-menu>
-          <el-menu-item>系统首页</el-menu-item>
-          <el-submenu>
-            <template v-slot:title>
-              <i class="el-icon-menu"></i>
-              <span>信息管理</span>
-            </template>
-            <el-menu-item>用户信息</el-menu-item>
-          </el-submenu>
-        </el-menu>
+  <el-menu-item index="1">
+    <i class="el-icon-home"></i>
+    <span>系统首页</span>
+  </el-menu-item>
+  <el-submenu index="2">
+    <template>
+      <i class="el-icon-menu"></i>
+      <span>信息管理</span>
+    </template>
+    <el-menu-item>用户信息</el-menu-item>
+  </el-submenu>
+</el-menu>
+
 
       </el-aside>
       <el-container>
