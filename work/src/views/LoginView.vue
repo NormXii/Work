@@ -7,7 +7,7 @@
           <b>欢迎您！</b>
         </div>
         <el-input
-            size="medium"
+            size="default"
             class="input"
             v-model="user.username"
             placeholder="Username">
@@ -16,7 +16,7 @@
           </template>
         </el-input>
         <el-input
-            size="medium"
+            size="default"
             class="input"
             v-model="user.password"
             show-password
@@ -26,8 +26,8 @@
           </template>
         </el-input>
         <div class="button-container">
-          <el-button type="primary" size="small" autocomplete="off">登录</el-button>
-          <el-button type="warning" size="small" autocomplete="off">注册</el-button>
+          <el-button type="primary" size="small" autocomplete="off" class="el-button">登录</el-button>
+          <el-button type="warning" size="small" autocomplete="off" class="el-button">注册</el-button>
         </div>
       </div>
     </div>
@@ -89,17 +89,10 @@ export default {
   height: 47px;
   margin-bottom: 18px;
 }
-.button-container {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-  text-align: right;
-  font-size: 30px;
-}
 .button-container .el-button {
   flex: 1;
-  margin: 0 5px;
+  margin: 0 50px;
   font-size: 18px;
-  padding: 20px;
+  padding: 20px 30px;
 }
 </style>
