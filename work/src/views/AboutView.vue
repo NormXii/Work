@@ -13,7 +13,7 @@
 
     <div v-if="selectedMenu">
       <h2>{{ selectedMenu }}</h2>
-      <p>这里是 {{ selectedMenu }} 的内容</p >
+      <p>这里是 {{ selectedMenu }} 的内容</p>
     </div>
   </div>
 </template>
