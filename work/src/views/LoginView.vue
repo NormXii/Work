@@ -14,7 +14,7 @@
                 size="default"
                 class="input"
                 v-model="user.username"
-                placeholder="Username">
+                placeholder="请输入用户名">
               <template #prefix>
                 <el-icon><User /></el-icon>
               </template>
@@ -26,7 +26,7 @@
                 class="input"
                 v-model="user.password"
                 show-password
-                placeholder="Password">
+                placeholder="请输入密码">
               <template #prefix>
                 <el-icon><Lock /></el-icon>
               </template>
@@ -72,6 +72,7 @@ export default {
         if (valid) {
           axios.post("/user/login", this.user).then(res => {
             if (res.data.success) {
+              this.$message.success("登录成功");
               this.$router.push("/home")
             } else {
               this.$message.error("用户名或密码错误")

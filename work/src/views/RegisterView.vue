@@ -4,8 +4,6 @@
     <div class="right-half">
       <div class="login-container">
         <div class="login-header">
-          <b>您好</b>
-          <br><br>
           <b>欢迎注册日程管理系统！</b>
         </div>
         <el-form :model="user" :rules="rules" ref="loginForm">
@@ -14,7 +12,7 @@
                 size="default"
                 class="input"
                 v-model="user.username"
-                placeholder="Username">
+                placeholder="请输入用户名">
               <template #prefix>
                 <el-icon><User /></el-icon>
               </template>
@@ -26,14 +24,26 @@
                 class="input"
                 v-model="user.password"
                 show-password
-                placeholder="Password">
+                placeholder="请输入密码">
+              <template #prefix>
+                <el-icon><Lock /></el-icon>
+              </template>
+            </el-input>
+          </el-form-item>
+          <el-form-item prop="confirmPassword" class="form-item">
+            <el-input
+                size="default"
+                class="input"
+                v-model="user.confirmPassword"
+                show-password
+                placeholder="请确认密码">
               <template #prefix>
                 <el-icon><Lock /></el-icon>
               </template>
             </el-input>
           </el-form-item>
           <div class="button-container">
-            <el-button type="primary" size="small" autocomplete="off" class="el-button" @click="login">注册</el-button>
+            <el-button type="primary" size="small" autocomplete="off" class="el-button" @click="register">注册</el-button>
             <el-button type="warning" size="small" autocomplete="off" class="el-button" @click="$router.push('/')">返回登录</el-button>
           </div>
         </el-form>
@@ -62,25 +72,33 @@ export default {
         ],
         password: [
           {required: true, message: '请输入密码', trigger: 'blur'}
+        ],
+        confirmPassword: [
+          {required: true, message: '请输入密码', trigger: 'blur'}
         ]
       }
     }
   },
   methods: {
-    login() {
+    register() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          axios.post("/user/login", this.user).then(res => {
+          if (this.user.password !== this.user.confirmPassword) {
+            this.$message.error("两次输入的密码不一致");
+            return;
+          }
+          axios.post("/user/register", this.user).then(res => {
             if (res.data.success) {
-              this.$router.push("/home")
+              this.$message.success("注册成功");
+              this.$router.push("/home");
             } else {
-              this.$message.error("用户名或密码错误")
+              this.$message.error("注册失败：" + res.data.message);
             }
           }).catch(err => {
-            this.$message.error("请求失败，请稍后重试")
+            this.$message.error("请求失败，请稍后重试");
           });
         } else {
-          this.$message.error("用户名或密码为空")
+          this.$message.error("用户名或密码为空");
         }
       });
     }
