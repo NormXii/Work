@@ -4,38 +4,48 @@
     <div class="right-half">
       <div class="login-container">
         <div class="login-header">
-          <b>欢迎您！</b>
+          <b>您好</b>
+          <br><br>
+          <b>欢迎使用日程管理系统！</b>
         </div>
-        <el-input
-            size="default"
-            class="input"
-            v-model="user.username"
-            placeholder="Username">
-          <template #prefix>
-            <el-icon><User /></el-icon>
-          </template>
-        </el-input>
-        <el-input
-            size="default"
-            class="input"
-            v-model="user.password"
-            show-password
-            placeholder="Password">
-          <template #prefix>
-            <el-icon><Lock /></el-icon>
-          </template>
-        </el-input>
-        <div class="button-container">
-          <el-button type="primary" size="small" autocomplete="off" class="el-button">登录</el-button>
-          <el-button type="warning" size="small" autocomplete="off" class="el-button">注册</el-button>
-        </div>
+        <el-form :model="user" :rules="rules" ref="loginForm">
+          <el-form-item prop="username" class="form-item">
+            <el-input
+                size="default"
+                class="input"
+                v-model="user.username"
+                placeholder="Username">
+              <template #prefix>
+                <el-icon><User /></el-icon>
+              </template>
+            </el-input>
+          </el-form-item>
+          <el-form-item prop="password" class="form-item">
+            <el-input
+                size="default"
+                class="input"
+                v-model="user.password"
+                show-password
+                placeholder="Password">
+              <template #prefix>
+                <el-icon><Lock /></el-icon>
+              </template>
+            </el-input>
+          </el-form-item>
+          <div class="button-container">
+            <el-button type="primary" size="small" autocomplete="off" class="el-button" @click="login">登录</el-button>
+            <el-button type="warning" size="small" autocomplete="off" class="el-button">注册</el-button>
+          </div>
+        </el-form>
       </div>
     </div>
   </div>
 </template>
 
+
 <script>
 import { User, Lock } from '@element-plus/icons-vue'
+import axios from 'axios'
 
 export default {
   name: "LoginView",
@@ -45,7 +55,34 @@ export default {
   },
   data() {
     return {
-      user: {}
+      user: {},
+      rules: {
+        username: [
+          {required: true, message: '请输入用户名', trigger: 'blur'}
+        ],
+        password: [
+          {required: true, message: '请输入密码', trigger: 'blur'}
+        ]
+      }
+    }
+  },
+  methods: {
+    login() {
+      this.$refs.loginForm.validate(valid => {
+        if (valid) {
+          axios.post("/user/login", this.user).then(res => {
+            if (res.data.success) {
+              this.$router.push("/")
+            } else {
+              this.$message.error(res.data.message || "用户名或密码错误")
+            }
+          }).catch(err => {
+            this.$message.error("请求失败，请稍后重试")
+          });
+        } else {
+          this.$message.error("用户名或密码为空")
+        }
+      });
     }
   }
 }
@@ -81,13 +118,16 @@ export default {
   justify-content: space-between;
 }
 .login-header {
-  margin-bottom: 20px;
+  margin-bottom: 0;
   text-align: center;
   font-size: 30px;
 }
 .input {
-  height: 47px;
-  margin-bottom: 18px;
+  height: 50px;
+  margin-bottom: 15px;
+}
+.form-item{
+  margin: 10px;
 }
 .button-container .el-button {
   flex: 1;
