@@ -1,85 +1,105 @@
 <template>
-  <div class="login-container">
-    <form class="login-form" @submit.prevent="login">
-      <h2>登录</h2>
-      <div class="form-group">
-        <label for="username">用户名：</label>
-        <input type="text" id="username" v-model="username" placeholder="请输入用户名" required>
+  <div class="wrapper">
+    <div class="left-half"></div>
+    <div class="right-half">
+      <div class="login-container">
+        <div class="login-header">
+          <b>欢迎您！</b>
+        </div>
+        <el-input
+            size="medium"
+            class="input"
+            v-model="user.username"
+            placeholder="Username">
+          <template #prefix>
+            <el-icon><User /></el-icon>
+          </template>
+        </el-input>
+        <el-input
+            size="medium"
+            class="input"
+            v-model="user.password"
+            show-password
+            placeholder="Password">
+          <template #prefix>
+            <el-icon><Lock /></el-icon>
+          </template>
+        </el-input>
+        <div class="button-container">
+          <el-button type="primary" size="small" autocomplete="off">登录</el-button>
+          <el-button type="warning" size="small" autocomplete="off">注册</el-button>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="password">密码：</label>
-        <input type="password" id="password" v-model="password" placeholder="请输入密码" required>
-      </div>
-      <button type="submit">登录</button>
-    </form>
+    </div>
   </div>
 </template>
 
 <script>
+import { User, Lock } from '@element-plus/icons-vue'
+
 export default {
+  name: "LoginView",
+  components: {
+    User,
+    Lock
+  },
   data() {
     return {
-      username: '',
-      password: ''
-    };
-  },
-  methods: {
-    login() {
-      // 在这里实现登录逻辑
-      console.log('用户名:', this.username);
-      console.log('密码:', this.password);
-      // 清空表单
-      this.username = '';
-      this.password = '';
+      user: {}
     }
   }
-};
+}
 </script>
 
 <style>
-.login-container {
+.wrapper {
+  display: flex;
+  height: 100vh;
+  background-image: url('@/assets/background.jpg');
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+.left-half {
+  flex: 1;
+}
+.right-half {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
-
-.login-form {
-  width: 300px;
+.login-container {
+  background-color: #fff;
+  width: 400px;
+  height: 350px;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.login-header {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 30px;
+}
+.input {
+  height: 47px;
+  margin-bottom: 18px;
+}
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  text-align: right;
+  font-size: 30px;
+}
+.button-container .el-button {
+  flex: 1;
+  margin: 0 5px;
+  font-size: 18px;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-input[type="text"],
-input[type="password"] {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-button {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #0056b3;
 }
 </style>
