@@ -6,7 +6,7 @@
         <div class="login-header">
           <b>您好</b>
           <br><br>
-          <b>欢迎使用日程管理系统！</b>
+          <b>欢迎注册日程管理系统！</b>
         </div>
         <el-form :model="user" :rules="rules" ref="loginForm">
           <el-form-item prop="username" class="form-item">
@@ -33,8 +33,8 @@
             </el-input>
           </el-form-item>
           <div class="button-container">
-            <el-button type="primary" size="small" autocomplete="off" class="el-button" @click="login">登录</el-button>
-            <el-button type="warning" size="small" autocomplete="off" class="el-button" @click="$router.push('/register')">注册</el-button>
+            <el-button type="primary" size="small" autocomplete="off" class="el-button" @click="login">注册</el-button>
+            <el-button type="warning" size="small" autocomplete="off" class="el-button" @click="$router.push('/')">返回登录</el-button>
           </div>
         </el-form>
       </div>
@@ -124,14 +124,14 @@ export default {
 }
 .input {
   height: 50px;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 .form-item{
-  margin: 10px;
+  margin: 20px;
 }
 .button-container .el-button {
   flex: 1;
-  margin: 0 50px;
+  margin: 0 20px;
   font-size: 18px;
   padding: 20px 30px;
 }

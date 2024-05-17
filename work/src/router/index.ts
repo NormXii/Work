@@ -20,6 +20,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/home',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: () => import(/* webpackChunkName: "about" */ '../views/RegisterView.vue')
   }
 ]
 
