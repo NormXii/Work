@@ -8,7 +8,6 @@ const routes: Array<RouteRecordRaw> = [
     name: 'login',
     component: LoginView
   },
-
   {
     path: '/home',
     name: 'home',
@@ -18,7 +17,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/register',
     name: 'Register',
     component: () => import(/* webpackChunkName: "about" */ '../views/RegisterView.vue')
-  }
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+  },
 ]
 
 const router = createRouter({
