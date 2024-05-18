@@ -90,7 +90,7 @@ export default {
           axios.post("/user/register", this.user).then(res => {
             if (res.data.success) {
               this.$message.success("注册成功");
-              this.$router.push("/home");
+              this.$router.push("/");
             } else {
               this.$message.error("注册失败：" + res.data.message);
             }
