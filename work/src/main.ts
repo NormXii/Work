@@ -6,6 +6,7 @@ import ElementPlus from 'element-plus'
 import 'element-plus/theme-chalk/index.css'
 import * as ElIcons from '@element-plus/icons-vue'
 
+
 const app = createApp(App)
 // 注册所有图标组件
 for (const [key, component] of Object.entries(ElIcons)) {
