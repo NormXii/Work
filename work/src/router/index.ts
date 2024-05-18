@@ -1,10 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import LoginView from "@/views/LoginView.vue"
 import HomeView from '../views/HomeView.vue';
-import AboutView from  '../views/AboutView.vue';
-
-
-
 
 const routes: Array<RouteRecordRaw> = [
   {
